@@ -91,4 +91,6 @@ lerna-debug.log
 Thumbs.db
 
 # AI generated files
+.claude
 CLAUDE.md
+*PLAN.md
