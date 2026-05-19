@@ -24,5 +24,7 @@ describe('App name fuctions', () => {
     expect(validateAppName('my-app_app')).toContain('App name should not contain special characters except hyphen (-)');
     expect(validateAppName('myapp!@(#&*(!@^$&*#&*@))')).toContain('App name should not contain special characters except hyphen (-)');
     expect(validateAppName('my_app')).toContain('App name should not contain special characters except hyphen (-)');
+    expect(validateAppName('a'.repeat(215))).toContain('App name must be 214 characters or fewer');
+    expect(validateAppName('a'.repeat(214))).toBe(true);
   });
 });
