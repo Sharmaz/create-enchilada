@@ -25,7 +25,7 @@ const resolveAndInitialize = (template, appName) => {
 };
 
 const app = async (args) => {
-  const templateArg = args.template || args.t;
+  const templateArg = args.with || args.t;
   const appNameArg = args._[0];
   const { help, h, list, l } = args;
 
