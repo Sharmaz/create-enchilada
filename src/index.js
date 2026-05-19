@@ -14,7 +14,8 @@ import listMessage from './utils/listMessage';
 const argsv = minimist(argv.slice(2));
 
 const resolveAndInitialize = (template, appName) => {
-  const targetDirectory = path.join(process.cwd(), appName);
+  const safeName = appName === '.' ? '.' : path.basename(appName);
+  const targetDirectory = path.join(process.cwd(), safeName);
   const sourceDir = path.resolve(
     fileURLToPath(import.meta.url),
     '../../templates',
@@ -106,17 +107,22 @@ const app = async (args) => {
       resolveAndInitialize(templateResponse.template, appNameResponse.appName);
     } catch (err) {
       console.error(colors.error(err.message));
+      process.exit(1);
     }
   } else {
     try {
       resolveAndInitialize(templateArg, appNameArg);
     } catch (err) {
       console.error(colors.error(err.message));
+      process.exit(1);
     }
   }
   return 0;
 };
 
-app(argsv);
+app(argsv).catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});
 
 export default app;

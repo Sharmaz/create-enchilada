@@ -20,6 +20,8 @@ const copyFilesAndDirectories = (source, destination) => {
     try {
       const stat = lstatSync(sourcePath);
 
+      if (stat.isSymbolicLink()) return;
+
       if (stat.isDirectory()) {
         mkdirSync(destPath, { recursive: true });
         copyFilesAndDirectories(sourcePath, destPath);
