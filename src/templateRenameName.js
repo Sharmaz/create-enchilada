@@ -16,7 +16,7 @@ const renamePackageJsonName = (targetDir, nameApp) => {
       'utf8',
     );
   } catch (err) {
-    throw new Error(`Failed to update package.json name: ${err.message}`);
+    throw new Error(`Failed to update package.json name: ${err.message}`, { cause: err });
   }
 };
 
