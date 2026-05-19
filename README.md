@@ -54,7 +54,7 @@ npm create enchilada -l
 
 ### Template:
 ```
-npm create enchilada -- --template [template-name] [app-name]
+npm create enchilada -- --with [template-name] [app-name]
 ```
 or
 ```
@@ -62,13 +62,13 @@ npm create enchilada -- -t [template-name] [app-name]
 ```
 E.g:
 ```
-npm create enchilada -- --template vanilla-js my-app
+npm create enchilada -- --with vanilla-js my-app
 ```
 
 ### Scaffold into current directory:
 Use `.` as the app name to scaffold into the current directory instead of creating a new one:
 ```
-npm create enchilada -- --template vanilla-js .
+npm create enchilada -- --with vanilla-js .
 ```
 Or via interactive prompts, enter `.` when asked for the app name.
 

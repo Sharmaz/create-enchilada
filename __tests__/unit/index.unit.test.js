@@ -10,7 +10,7 @@ afterEach(() => rm(genPath, { recursive: true, force: true }));
 
 describe('Passing arguments to main app', () => {
   test('Passing template and directory', () => {
-    const args = { _: [appNameMock], template: 'react' };
+    const args = { _: [appNameMock], with: 'react' };
     app(args);
 
     const packageJson = readFileSync(`${genPath}/package.json`, 'utf8');
@@ -18,7 +18,7 @@ describe('Passing arguments to main app', () => {
   });
 
   test('Passing template without directory', () => {
-    const args = { _: [], template: 'react' };
+    const args = { _: [], with: 'react' };
     app(args);
 
     let packageJson;
@@ -52,7 +52,7 @@ describe('Passing arguments to main app', () => {
   });
 
   test('Passing a invalid template', async () => {
-    const { stdout } = await execa`node index.js --template no-template ${appNameMock}`;
+    const { stdout } = await execa`node index.js --with no-template ${appNameMock}`;
     expect(stdout).toContain('Invalid Template');
   });
 });
