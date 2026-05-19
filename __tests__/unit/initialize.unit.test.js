@@ -14,18 +14,14 @@ describe('Initialize app', () => {
     const packageJson = readFileSync(`${genPath}/package.json`, 'utf8');
     expect(packageJson).toContain(appNameMock);
   });
-  test('Attempt directory already exist', () => {
+  test('Throws when target directory already exists', async () => {
     mkdirSync(genPath, { recursive: true });
     copyFilesAndDirectories(sourcePath, genPath);
-    initialize(sourcePath, genPath, appNameMock);
-
-    const packageJson = readFileSync(`${genPath}/package.json`, 'utf8');
-    expect(packageJson).toContain('vanilla-js');
+    await expect(initialize(sourcePath, genPath, appNameMock)).rejects.toThrow('Target directory already exist!');
   });
-  test('Invalid template path does not create directory', () => {
+  test('Throws on invalid template path', async () => {
     const invalidSource = '/non/existent/template';
-    initialize(invalidSource, genPath, appNameMock);
-
+    await expect(initialize(invalidSource, genPath, appNameMock)).rejects.toThrow('Invalid Template');
     expect(existsSync(genPath)).toBe(false);
   });
 });

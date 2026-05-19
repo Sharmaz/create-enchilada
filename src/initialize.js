@@ -10,13 +10,11 @@ async function initialize(sourcePath, destinationPath, name) {
   const isDestinationPath = existsSync(destinationPath);
 
   if (!isValidTemplate) {
-    console.log(colors.error('Invalid Template'));
-    return;
+    throw new Error('Invalid Template');
   }
 
   if (isDestinationPath && !isCurrentDir) {
-    console.log(colors.error('Target directory already exist!'));
-    return;
+    throw new Error('Target directory already exist!');
   }
 
   if (!isCurrentDir) {

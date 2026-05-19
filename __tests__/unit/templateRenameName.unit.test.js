@@ -17,9 +17,9 @@ describe('App name in package.json', () => {
     expect(packageJson).toContain(appNameMock);
   });
 
-  test('Handles missing package.json without throwing', () => {
+  test('Throws on missing package.json', () => {
     expect(() => {
       renamePackageJsonName('/non/existent/path', appNameMock);
-    }).not.toThrow();
+    }).toThrow('Failed to update package.json name');
   });
 });

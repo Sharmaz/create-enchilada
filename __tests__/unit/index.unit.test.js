@@ -52,7 +52,7 @@ describe('Passing arguments to main app', () => {
   });
 
   test('Passing a invalid template', async () => {
-    const { stdout } = await execa`node index.js --with no-template ${appNameMock}`;
-    expect(stdout).toContain('Invalid Template');
+    const { stderr } = await execa('node', ['index.js', '--with', 'no-template', appNameMock], { reject: false });
+    expect(stderr).toContain('Invalid Template');
   });
 });
